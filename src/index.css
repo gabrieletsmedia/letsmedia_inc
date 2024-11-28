@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
+
+  :root {
+    --accent-yellow: #fff200;
+    --nav-height: clamp(64px, 8vh, 80px);
+    --content-max-width: 1440px;
+    --container-padding: 2rem;
+  }
+}
+
+/* Menu Item Transitions */
+.menu-item {
+  @apply transition-all duration-300;
+  transform-origin: 50% 50% 0px;
+}
+
+.menu-item.active {
+  @apply transform translate-x-3;
+}
+
+.menu-item-underline {
+  @apply absolute bottom-0 left-0 w-full h-0.5 bg-[rgb(35,31,32)] transform scale-x-0 transition-transform duration-300;
+  transform-origin: 50% 50% 0px;
+}
+
+.menu-item.active .menu-item-underline {
+  @apply scale-x-100;
+}
+
+/* Slider Transitions */
+.slider-container {
+  @apply relative overflow-hidden;
+  perspective: 1200px;
+}
+
+.slider-track {
+  @apply flex gap-6;
+  transform-style: preserve-3d;
+  touch-action: pan-y;
+}
+
+.slider-card {
+  @apply flex-shrink-0 rounded-2xl overflow-hidden;
+  width: calc(47.619% - 12.5714px);
+  transform-origin: 50% 50% 0px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Navigation Controls */
+.nav-controls {
+  @apply absolute flex gap-4 items-center;
+  bottom: -44px;
+  right: 32px;
+}
+
+.nav-button {
+  @apply w-8 h-8 rounded-[10px] flex items-center justify-center transition-transform hover:scale-105;
+  background-color: rgb(227, 96, 71);
+}
+
+.nav-dots {
+  @apply absolute flex gap-4 items-center;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-dot {
+  @apply w-2 h-2 rounded-full transition-opacity duration-200;
+  background-color: rgb(253, 106, 61);
+}
+
+.nav-dot.active {
+  @apply opacity-100;
+}
+
+.nav-dot.inactive {
+  @apply opacity-20;
+}
